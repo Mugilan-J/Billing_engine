@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = "super_secret_key_for_session" # Change this for production
 
 # --- AUTH LOGIC (Copied from authctl.py) ---
-DB_URL = "postgres://postgres:mugi%402005@localhost:5432/billing_engine"
+DB_URL = "postgres://postgres:password@localhost:5432/billing_engine"
 
 def connect():
     return psycopg2.connect(DB_URL)
@@ -123,4 +123,5 @@ def logout():
 
 if __name__ == '__main__':
     print("🚀 UI Server running on http://localhost:5000")
+
     app.run(port=5000, debug=True)
