@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 
 # DB CONFIGURATION
-DB_URL = "postgres://postgres:mugi%402005@localhost:5432/billing_engine"
+DB_URL = "postgres://postgres:password@localhost:5432/billing_engine"
 
 def connect():
     try:
@@ -277,4 +277,5 @@ if __name__ == "__main__":
 # if bcrypt.checkpw(password.encode(), stored_hash):
 #         print("matched")
 # else:
+
 #         print("not matched")
