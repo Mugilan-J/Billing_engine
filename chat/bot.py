@@ -1,7 +1,7 @@
 from brick import BrickClient
 
 # 1. Configuration
-API_KEY = "1ce2523e-edfe-4ce9-8d57-3025de5dd0d2" # Ensure this matches your DB
+API_KEY = "YOUR_API_KEY_HERE" # Ensure this matches your DB
 SYSTEM_PROMPT = "You are a helpful assistant. Keep answers short."
 
 # 2. Initialize the Client

@@ -11,7 +11,7 @@ from datetime import datetime
 
 
 def _load_env():
-    if os.getenv("DATABASE_URL"):
+    if os.getenv("BILLING_URL"):
         return
 
     current = Path(__file__).resolve()
@@ -30,9 +30,9 @@ def _load_env():
 _load_env()
 
 # DB CONFIGURATION
-DB_URL = os.getenv("DATABASE_URL")
+DB_URL = os.getenv("BILLING_URL")
 if not DB_URL:
-    print("❌ DATABASE_URL is not set. Please create an .env file.")
+    print("❌ BILLING_URL is not set. Please create an .env file.")
     sys.exit(1)
 
 def connect():

@@ -10,7 +10,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 
 def _load_env():
-    if os.getenv("DATABASE_URL"):
+    if os.getenv("BILLING_URL"):
         return
 
     current = Path(__file__).resolve()
@@ -29,9 +29,9 @@ def _load_env():
 _load_env()
 
 # DB Configuration
-DB_URL = os.getenv("DATABASE_URL")
+DB_URL = os.getenv("BILLING_URL")
 if not DB_URL:
-    raise RuntimeError("DATABASE_URL is not set. Create an .env file with the connection string.")
+    raise RuntimeError("BILLING_URL is not set. Create an .env file with the connection string.")
 
 # 1. Define a Custom Exception
 class AuthenticationError(Exception):

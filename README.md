@@ -27,17 +27,17 @@ Billing Engine is a production-minded reference stack for tracking LLM/API usage
 - **Pip/virtualenv** and **Git**
 
 ## 1. Configure Environment Variables
-All services read `DATABASE_URL` from an `.env` file at the repo root.
+All services read `BILLING_URL` from an `.env` file at the repo root.
 
 ```bash
 cp .env.example .env
-# edit DATABASE_URL to match your Postgres instance
+# edit BILLING_URL to match your Postgres instance
 ```
 
 Example value:
 
 ```
-DATABASE_URL=postgres://postgres:mypassword@localhost:5432/billing_engine
+BILLING_URL=postgres://postgres:mypassword@localhost:5432/billing_engine
 ```
 
 Guidelines:
@@ -60,7 +60,7 @@ python testing/setup_db.py
 python testing/setup_db.py init
 ```
 
-The script uses `DATABASE_URL`; ensure the .env file (or your shell) is configured before running it.
+The script uses `BILLING_URL`; ensure the .env file (or your shell) is configured before running it.
 
 ## 3. Install Dependencies
 
@@ -127,7 +127,7 @@ The same credentials work in any client that talks to the billing API.
 	```bash
 	ollama pull smollm2
 	```
-3. Configure `DATABASE_URL` (same as the rest of the repo) and start the chat client:
+3. Configure `BILLING_URL` (same as the rest of the repo) and start the chat client:
 	```bash
 	python chat/brick.py
 	```
@@ -164,7 +164,7 @@ curl -X POST http://localhost:8080/events \
 - Run `monthly-billing-runner` at month end (or on demand) to refresh statements and per-model breakdowns.
 
 ## 9. Troubleshooting
-- **Missing DATABASE_URL:** confirm `.env` exists or export the variable before running any script.
+- **Missing BILLING_URL:** confirm `.env` exists or export the variable before running any script.
 - **No tables after migration:** double-check that the connection string targets the expected database (pgAdmin screenshot + `psql -c "SELECT current_database();"`).
 - **Ollama connection issues:** ensure `ollama serve` is active and the `smollm2` model is pulled.
 - **Collector rejects events:** verify `api_key_id` matches a key generated via `noauth.py` and that `total_tokens = input_tokens + output_tokens`.

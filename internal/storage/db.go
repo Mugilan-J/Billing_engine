@@ -16,7 +16,7 @@ func dbURL() string {
 		_ = godotenv.Load()
 	})
 
-	if dsn := os.Getenv("DATABASE_URL"); dsn != "" {
+	if dsn := os.Getenv("BILLING_URL"); dsn != "" {
 		return dsn
 	}
 
