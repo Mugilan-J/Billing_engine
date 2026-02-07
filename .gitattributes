@@ -1,0 +1,7 @@
+# Mark Python tooling as non-primary
+chat/* linguist-vendored
+
+
+# Keep Go services as main language
+cmd/** linguist-detectable=true
+internal/** linguist-detectable=true
