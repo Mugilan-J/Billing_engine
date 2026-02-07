@@ -17,10 +17,10 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
-		// 2. Inject UserID into Header (so your existing dashboard code works!)
+		// 2. Inject UserID into Header for downstream handlers
 		r.Header.Set("X-User-ID", cookie.Value)
 
-		// 3. Continue to the actual dashboard handler
+		// 3. Continue to the next handler
 		next.ServeHTTP(w, r)
 	})
 }

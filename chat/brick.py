@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 import requests
 import time
 import threading
@@ -5,8 +8,30 @@ import psycopg2
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
+
+def _load_env():
+    if os.getenv("DATABASE_URL"):
+        return
+
+    current = Path(__file__).resolve()
+    for directory in [current.parent, *current.parents]:
+        env_file = directory / ".env"
+        if env_file.exists():
+            for line in env_file.read_text().splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                os.environ.setdefault(key.strip(), value.strip())
+            break
+
+
+_load_env()
+
 # DB Configuration
-DB_URL = "postgres://postgres:mugi%402005@localhost:5432/billing_engine"
+DB_URL = os.getenv("DATABASE_URL")
+if not DB_URL:
+    raise RuntimeError("DATABASE_URL is not set. Create an .env file with the connection string.")
 
 # 1. Define a Custom Exception
 class AuthenticationError(Exception):
